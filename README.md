@@ -2,18 +2,37 @@
 
 This project demonstrates FastMCP server with Bearer token authentication mounted on FastAPI, including OAuth 2.1 endpoints for dynamic client registration and metadata discovery.
 
-## Requirements
+## MCP Server Setup
+
+### Requirements
 
 - Python 3.8+
 - See `requirements.txt` for all dependencies
 
-## Installation
+### Installation
 
 ```bash
 pip install -r requirements.txt
 ```
 
-## Running the Server
+### Env
+
+```bash
+cp .env.example .env
+```
+
+Create an OAuth application with any OAuth provider. (I've used [Clerk](https://clerk.com/) as an example.)  
+Obtain the `client_id` and `client_secret` from your provider.  
+Update your `.env` file with the appropriate environment variables:
+
+```bash
+CLERK_ISSUER=<issuer_url>
+CLERK_AUDIENCE=<clerk_client_id>
+CLERK_CLIENT_SECRET=<clerk_client_secret>
+BASE_URL=http://localhost:8000
+```
+
+### Running the Server
 
 ```bash
 python server.py
@@ -25,7 +44,7 @@ eg.
 python server.py --transport sse --host 0.0.0.0 --port 8000 --log-level info
 ```
 
-### Command Line Options
+#### Command Line Options
 
 ```bash
 python server.py --help
