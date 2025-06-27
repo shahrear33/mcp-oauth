@@ -2,19 +2,6 @@
 
 This project demonstrates FastMCP server with Bearer token authentication mounted on FastAPI, including OAuth 2.1 endpoints for dynamic client registration and metadata discovery.
 
-## Features
-
-- FastMCP server mounted on FastAPI
-- Bearer token (JWT) authentication using RSA public key validation
-- OAuth 2.1 Authorization Server metadata endpoints
-- Dynamic client registration endpoint
-- OpenID Connect discovery endpoint
-- CORS middleware for cross-origin requests
-- Structured logging with loguru
-- Development token generation endpoint
-- Health check endpoint
-- Multiple MCP tools (hello, add_numbers)
-
 ## Requirements
 
 - Python 3.8+
@@ -48,6 +35,40 @@ python server.py --help
 - `--host`: Host address (default: `127.0.0.1`)
 - `--port`: Port number (default: `8000`)
 - `--log-level`: Logging level (default: `info`)
+
+## Testing the Server
+
+### Method 1: MCP Inspector
+
+The [MCP Inspector](https://github.com/modelcontextprotocol/inspector) provides a web-based interface to test MCP servers with OAuth authentication.
+
+1. **Configure the server URL**: Enter `http://localhost:8000/mcp/sse` in the MCP Inspector
+   ![Configure MCP Inspector](assets/1.png)
+
+2. **Initiate OAuth flow**: Click the "Quick OAuth Flow" button to start authentication
+   ![Start OAuth Flow](assets/2.png)
+
+3. **Complete authentication**: Follow the OAuth steps and grant the necessary permissions
+   ![Grant Permissions](assets/3.png)
+
+### Method 2: FastMCP Python Client
+
+Use the [FastMCP Client](https://gofastmcp.com/clients/auth/oauth) for programmatic access with OAuth authentication.
+
+1. **Update the client configuration**: Modify the server URL in `client.py` to match your server endpoint
+2. **Run the client**:
+   ```bash
+   python client.py
+   ```
+
+### Method 3: Claude Integration
+
+Integrate the MCP server directly with Claude for AI assistant access.
+
+1. **Navigate to settings**: Go to Settings → Integrations → Add Integration
+2. **Configure the server**: Input the server configuration details
+   ![Claude MCP Integration](assets/4.png)
+3. **Establish connection**: Click "Connect" to enable the integration
 
 ## Server Endpoints
 
@@ -93,6 +114,19 @@ This server implements key OAuth 2.1 endpoints:
 - Protected Resource Metadata (RFC 8705)
 
 Note: This is a development/demonstration server. For production use, integrate with a proper OAuth 2.1 Authorization Server or Identity Provider.
+
+## Features
+
+- FastMCP server mounted on FastAPI
+- Bearer token (JWT) authentication using RSA public key validation
+- OAuth 2.1 Authorization Server metadata endpoints
+- Dynamic client registration endpoint
+- OpenID Connect discovery endpoint
+- CORS middleware for cross-origin requests
+- Structured logging with loguru
+- Development token generation endpoint
+- Health check endpoint
+- Multiple MCP tools (hello, add_numbers)
 
 ## References
 
